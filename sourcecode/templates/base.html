@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>{% block title %}{% endblock %} | Westhill Bike Club</title>
+<meta charset="utf-8">
+<meta name="description" content="Bike Club">
+<meta name="author" content="Joanna Mein">
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" >
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+
+</head>
+<body>
+<div id="wrapper">
+<!-- Navigation Starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="navbar"> <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> <span class="sr-only">Toggle navigation</span> 
+      </button>
+      <a class="navbar-brand" href="http://localhost:5000/">Westhill Bike Club</a> </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+       	<li><a href="http://localhost:5000/about">About</a></li>
+        <li><a href="http://localhost:5000/membership">Membership</a></li>
+        <li><a href="http://localhost:5000/annual_ride">Annual Bike Ride</a></li>
+        <li><a href="http://localhost:5000/create_ride">Create A Ride</a></li>
+        <li><a href="http://localhost:5000/login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Navigation Ends -->
+
+<!-- Image Banner Begins -->
+<div class="img_container"> 
+	{% block img_content %} {% endblock %} 
+</div>
+<!-- Image Banner Ends -->
+
+<!-- Render Template Content Begins-->
+{% block body_content %} {% endblock %}
+<!-- Render Template Content Ends -->
+
+<!-- Footer Begins -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    	<p>Set09103 Coursework2 - Westhill Bike Club</p>
+		<p>Joanna Mein</p>
+  </div>
+</nav>
+<!-- Footer Ends -->
+</div>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script> 
+<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</body>
+</html>
