@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+body, html{
+  	height: 100%;
+  	margin: 0;
+  	padding-bottom: 70px;
+}
+
+#wrapper{
+	min-height: 100%
+}
+
+.content{
+	padding: 20px;
+  	min-height: 100%;
+  	margin: 0 auto -50px;
+}
+
+/* Navigation */
+
+.navbar-inverse{
+    background-color: #EFA942 !important; 
+    border-color: #EFA942 !important; 
+}
+
+.navbar-inverse .navbar-brand, .navbar-nav>li>a{
+    color: #000000 !important;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-nav>li>a:hover{
+    color: #FFFFFF !important;
+}
+
+.nav-tabs>li>a{
+    color: #1C5252 !important;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle{
+    background-color: #EFA942 !important;
+}
+
+.glyphicon{
+	color: #000000 !important;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #000000 !important;
+}
+
+@media screen and (max-width: 767px) {
+
+  h1.banner{
+  	padding-top: 30% !important;
+  }
+  
+}
+
+/* ----------- */
+
+/* Thumbnail Content */
+
+.btn-primary{
+    background-color: #F26A68 !important;
+    border-color: #F26A68 !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
+    background-color: #DC615F;
+    border-color: #DC615F;
+}
+
+.equal{  
+    display: -webkit-flex;
+    display: flex;
+}
+
+/* ----------- */
+
+/* Main content on pages */
+
+.container-fluid{
+	margin-top: 2%;
+	margin-right: 5%;
+	margin-left: 5%;
+	font-size: 14px;
+}
+
+h3{
+	text-decoration: underline;
+}
+
+/* ----------- */
+
+/* Page Banners */
+
+.img_cont{
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 400px;
+}
+
+.img_cont2{
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.bg_img{
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/wheel.png);
+}
+
+.bg_img1{
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/cyclist_bw.png);
+}
+
+.bg_img2{
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/evening_cyclist.png);
+}
+
+.bg_img3{
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/404.png);
+}
+
+h1.banner, h2.banner, p.lead{
+	text-align: center;
+	color: #FFFFFF;
+}
+	
+h1.banner{
+	margin-top: 0%;
+    padding-top: 12%;
+}
+	
+/* ----------- */
+
+/* Footer */
+
+.navbar-default{
+    background-color: #EFA942 !important;
+    border-color: #EFA942 !important;
+}
+
+.container{
+	text-align: center;
+    line-height: 10px;
+    margin-top: 1%;
+    width: 90% !important;
+}
+/* ----------- */
