@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+<!-- Banner Image Content Begins -->
+{% block img_content %}
+	<div class="img_cont bg_img">
+    	<h1 class="banner">Sign Up</h1>
+    </div>
+{% endblock %}}
+<!-- Banner Image Content Ends -->
+
+{% block body_content %}
+<div class="container-fluid">
+
+<form method="POST" action="http://localhost:5000/signup/">
+    {{ form.csrf_token }}
+    <div class="form-group">
+       {{ form.username }}
+    </div>
+    <div class="form-group">
+        {{ form.email }}
+    </div>
+    <div class="form-group">
+        {{ form.password }}
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+
+<div class="errors">
+    {% for field, err in errors %}
+      	<p>{{field}} : {{err|join(', ')}}</p>
+    {% endfor %}
+</div>
+
+<div class="message-flash">
+    {% for message in get_flashed_messages() %}
+      <div class=flash>{{ message }}</div>
+	{% endfor %}
+</div>
+
+</div>
+{% endblock %}
