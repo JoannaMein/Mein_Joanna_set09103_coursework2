@@ -12,18 +12,43 @@ Home
 {% block img_content %}
 	<div class="img_cont bg_img">
     	<h1 class="banner">Welcome to Westhill Bike Club</h1>
+			<p class="banner">The Westhill Bike Club was established in 2015 with a focus of getting like-minded people into cycling with a group.</p>
+			<p class="button">
+				<a class="btn btn-lg btn-primary" href="/about/" role="button">Learn More</a>
+			</p>
     </div>
 {% endblock %}}
 <!-- Banner Image Content Ends -->
 
 <!-- Main Body Content Begins -->
 {% block body_content %}
- 
-	<div id="main" class="container-fluid">
-    	<p>The Westhill Bike Club was established in 2015 with a focus of getting like-minded people into cycling with a group. We do not organise any racing events, although our members are free to participate in competitive events if they choose. Our goal is to get people who are riding on their own or not riding much, to join and achieve some personal challenges.</p>
-    	<p>Feel free to look around to find out more about the club and how to join as a member.</p>
-  	</div>
+
+	<div class="container-fluid">
+
+		<div class="row">
+        <div class="col-lg-3 col-sm-6">
+          <img class="rounded-circle" src="../static/imgs/cyclist_bw.png" alt="" width="190" height="190">
+          <h2>Tuesday Social Ride</h2>
+          <p>Every Tuesday at 7pm (April – September) we have a social ride where the pace is kept to a reasonable 12 – 15 mph and noone is left behind</p>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <img class="rounded-circle" src="../static/imgs/training.png" alt="" width="190" height="190">
+          <h2>Tuesday Training Ride</h2>
+          <p>Every Tuesday at 7pm (April – September) we have a training ride for those who want to push themeselves that little bit harder Pace 15-18mph</p>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <img class="rounded-circle" src="../static/imgs/cyclist_bw.png" alt="" width="190" height="190">
+          <h2>Thursday Beginners</h2>
+          <p>Every Thursday at 7pm (April – September) we have a beginners ride where the pace is slow and the focus is on gaining confidence</p>
+        </div>
+				<div class="col-lg-3 col-sm-6">
+          <img class="rounded-circle" src="../static/imgs/cyclist_bw.png" alt="" width="190" height="190">
+          <h2>Sunday Slowcoaches</h2>
+          <p>Every Sunday at 9am (April – September) we have a longer ride where the pace is kept slower. Coffee and Cake stops are also involved</p>
+        </div>
+    </div>
+
+	</div>
 
 {% endblock %}}
 <!-- Main Body Content Ends -->
-
