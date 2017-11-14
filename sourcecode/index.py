@@ -79,6 +79,12 @@ def login():
 
     return render_template('login.html', form=form, errors=form.errors.items()), 200
 
+@app.route('/dashboard/')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', name=current_user.username), 200
+
+
 @app.route('/logout/')
 @login_required
 def logout():
