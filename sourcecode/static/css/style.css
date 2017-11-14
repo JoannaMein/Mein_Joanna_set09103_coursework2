@@ -237,46 +237,6 @@ input[type="username"], input[type="name"], input[type="email"], input[type="pas
 
 /* ----------- */
 
-/* Contact form */
-
-.contact_form{
-	margin: 2% 5%;
-}
-
-.flash {
-  background-color: #f5f5f5;
-	text-align: center;
-  padding: 10px;
-	margin: 0 6%;
-}
-
-.col-md-6 input#name, .col-md-6 input#email, .col-md-12 input#subject {
-  width: 100% !important;
-  height: 45px !important;
-  margin: 1% 0 !important;
-}
-
-.col-md-12 textarea#message{
-	width: 100%;
-	height: 100px;
-}
-
-input#submit, input.submit{
-	width: 50%;
-  margin: 3% 25%;
-	background-color: #F7CA18 !important;
-	border-color: #F7CA18!important;
-	color: #000000 !important;
-}
-
-input#submit:hover{
-	color: #F7CA18 !important;
-	background-color: #000000 !important;
-	border-color: #000000!important;
-}
-
-/* ----------- */
-
 /* Footer */
 
 footer{
