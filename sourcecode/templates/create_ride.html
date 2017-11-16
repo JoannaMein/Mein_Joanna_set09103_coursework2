@@ -1,0 +1,22 @@
+{% extends "dashboard_temp.html" %}
+
+{% block title %}
+Create A Ride
+{% endblock %}
+
+{% block body_content %}
+
+<div class="container-fluid">
+  <h1 class="page-header">Create A Ride</h1>
+
+		<form class="ride-form" action = "{{ request.path }}" method = "post">
+			<br><input type = "text" name = "name" placeholder = "Name" /><br>
+			<br><input type = "date" name = "date" placeholder = "Date" /><br>
+			<br><input type = "time" name = "time" placeholder = "Time" /><br>
+			<br><input type = "text" name = "location" placeholder = "Location" /><br>
+			<br><textarea  type="text"  name="message" rows="10" id="message" placeholder="Event Desription"></textarea><br>
+			<br><input class="submit" type ="submit" value ="Submit" /></br>
+		</form>
+
+</div>
+{% endblock %}
