@@ -35,6 +35,21 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+class Rides(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    date = db.Column(db.String(30))
+    time = db.Column(db.String(30))
+    location = db.Column(db.String(30))
+    message = db.Column(db.String(400))
+
+    def __init__(self, name, date, time, location, message):
+        self.name = name
+        self.date = date
+        self.time = time
+        self.location = location
+        self.message = message
+
 @app.route('/')
 def index():
     return render_template('index.html'), 200
@@ -50,6 +65,10 @@ def membership():
 @app.route('/westhill_bike_ride/')
 def annual_ride():
     return render_template('westhill_bike_ride.html'), 200
+
+@app.route('/events/')
+def events():
+    return render_template('event.html', Rides = Rides.query.all()), 200
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -84,6 +103,20 @@ def login():
 def dashboard():
     return render_template('dashboard.html', name=current_user.username), 200
 
+@app.route('/dashboard/create_ride/', methods=['GET', 'POST'])
+@login_required
+def create_ride():
+   if request.method == 'POST':
+      if not request.form['name'] or not request.form['date'] or not request.form['time'] or not request.form['location'] or not request.form['message']:
+         flash('Please enter all the fields', 'error')
+      else:
+         ride = Rides(request.form['name'], request.form['date'], request.form['time'], request.form['location'],
+            request.form['message'])
+
+         db.session.add(ride)
+         db.session.commit()
+         return redirect(url_for('events'))
+   return render_template('create_ride.html'), 200
 
 @app.route('/logout/')
 @login_required
