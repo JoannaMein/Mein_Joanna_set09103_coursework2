@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+<!-- Page Title Begins -->
+{% block title %}
+
+Events
+
+{% endblock %}
+<!-- Page Title Ends -->
+
+<!-- Banner Image Content Begins -->
+{% block img_content %}
+
+    <div class="img_cont bg_img2">
+    	<h1 class="banner">Events</h1>
+      <p class="button">
+				<a class="btn btn-lg btn-primary" href="/dashboard/create_ride/" role="button">Create A Ride</a>
+			</p>
+    </div>
+
+{% endblock %}
+<!-- Banner Image Content Ends -->
+
+<!-- Main Body Content Begins -->
+{% block body_content %}
+
+  <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+    <ul class="event-list">
+      {% for ride in Rides %}
+      <li>
+        <time>
+          <span class="date">{{ ride.date }}</span>
+          <span class="time">{{ ride.time }}</span>
+        </time>
+        <div class="info">
+          <h2 class="title">{{ ride.name }}</h2>
+          <h3 class="loc">{{ ride.location }}</h3>
+          <p class="desc">{{ ride.message }}</p>
+        </div>
+      </li>
+      {%  endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}}
+<!-- Main Body Content Ends -->
