@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+<!-- Banner Image Content Begins -->
+{% block img_content %}
+	<div class="img_cont bg_img4">
+    	<h1 class="banner">Contact Us</h1>
+    </div>
+{% endblock %}}
+<!-- Banner Image Content Ends -->
+
+{% block body_content %}
+
+<div class="container-fluid">
+
+		{% for message in get_flashed_messages() %}
+			<div class ="flash">{{ message }}</div>
+		{% endfor %}
+
+		{% for message in form.name.errors %}
+			<div class="flash">{{ message }}</div>
+		{% endfor %}
+
+		{% for message in form.email.errors %}
+			<div class="flash">{{ message }}</div>
+		{% endfor %}
+
+		{% for message in form.subject.errors %}
+			<div class="flash">{{ message }}</div>
+		{% endfor %}
+
+		{% for message in form.message.errors %}
+			<div class="flash">{{ message }}</div>
+		{% endfor %}
+
+	<form action="{{ url_for('contact') }}" method=post>
+	{{ form.hidden_tag() }}
+		<div class="row">
+	  	<div class="col-md-6">
+	  		{{ form.name }}
+	  	</div>
+	  	<div class="col-md-6">
+	  		{{ form.email }}
+	  	</div>
+		</div>
+	  <div class="row">
+	  	<div class="col-md-12">
+	      {{ form.subject }}
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-12">
+	  		{{ form.message }}
+			</div>
+			{{ form.submit }}
+		</div>
+	</form>
+</div>
+{% endblock %}
