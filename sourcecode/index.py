@@ -5,6 +5,9 @@ from wtforms.validators import InputRequired, Email, Length, EqualTo
 from flask_sqlalchemy  import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask.ext.mail import Message, Mail
+
+mail = Mail()
 
 app = Flask(__name__)
 
@@ -14,6 +17,14 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = 'jo@mein.co.uk'
+app.config["MAIL_PASSWORD"] = ''
+
+mail.init_app(app)
 
 class LoginForm(Form):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)], render_kw={"placeholder": "Enter Username", "type":"username"})
@@ -50,6 +61,13 @@ class Rides(db.Model):
         self.location = location
         self.message = message
 
+class ContactForm(Form):
+  name = TextField("Name", [validators.required("Please enter your name")], render_kw={"placeholder": "Name", "type":"name"})
+  email = TextField("Email", [validators.required("Please enter your email address"), validators.Email()], render_kw={"placeholder": "Email Address", "type":"email"})
+  subject = TextField("Subject", [validators.required("Please enter a subject")], render_kw={"placeholder": "Enter Subject", "type":"subject"})
+  message = TextAreaField("Message", [validators.required("Please enter a message")], render_kw={"placeholder": "Message", "type":"message"})
+  submit = SubmitField("Send")
+
 @app.route('/')
 def index():
     return render_template('index.html'), 200
@@ -69,6 +87,27 @@ def annual_ride():
 @app.route('/events/')
 def events():
     return render_template('event.html', Rides = Rides.query.all()), 200
+
+@app.route('/contact/', methods=['GET', 'POST'])
+def contact():
+	form = ContactForm()
+
+	if request.method == 'POST':
+  		if form.validate() == False:
+  			flash('All Fields Are Required')
+  			return render_template('contact.html', form=form)
+  		else:
+  			msg = Message (form.subject.data, sender='form.email.data', recipients=['jo@mein.co.uk'])
+      		msg.body = """
+      		From: %s <%s>
+     		 %s
+      		""" % (form.name.data, form.email.data, form.message.data)
+      		mail.send(msg)
+                flash('Thank you for your message. We will get back to you shortly.')
+    		return redirect('/contact/')
+
+        elif request.method == 'GET':
+            return render_template('contact.html', form=form), 200
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
