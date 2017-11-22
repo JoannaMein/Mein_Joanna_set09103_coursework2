@@ -1,0 +1,208 @@
+% #######################################
+% ########### FILL THESE IN #############
+% #######################################
+\def\mytitle{Westhill Bike Club - Coursework 2 Report}
+\def\mykeywords{Python, Flask, Bootstrap, Jinga2, JSON, Bike Club, Cycling, Membership, Create Ride}
+\def\myauthor{Joanna Mein}
+\def\contact{40316854@live.napier.ac.uk}
+\def\mymodule{Advanced Web Technologies (SET09103)}
+% #######################################
+% #### YOU DON'T NEED TO TOUCH BELOW ####
+% #######################################
+\documentclass[10pt, a4paper]{article}
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\twocolumn
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+%colour our links, remove weird boxes
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+%Stop indentation on new paragraphs
+\usepackage[parfill]{parskip}
+%% Arial-like font
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+%Napier logo top right
+\usepackage{watermark}
+%Lorem Ipusm dolor please don't leave any in you final report ;)
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+%give us the Capital H that we all know and love
+\usepackage{float}
+%tone down the line spacing after section titles
+\usepackage{titlesec}
+%Cool maths printing
+\usepackage{amsmath}
+%PseudoCode
+\usepackage{algorithm2e}
+
+\titlespacing{\subsection}{0pt}{\parskip}{-3pt}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\paragraph}{0pt}{\parskip}{\parskip}
+\newcommand{\figuremacro}[5]{
+    \begin{figure}[#1]
+        \centering
+        \includegraphics[width=#5\columnwidth]{#2}
+        \caption[#3]{\textbf{#3}#4}
+        \label{fig:#2}
+    \end{figure}
+}
+
+\lstset{
+	escapeinside={/*@}{@*/}, language=C++,
+	basicstyle=\fontsize{8.5}{12}\selectfont,
+	numbers=left,numbersep=2pt,xleftmargin=2pt,frame=tb,
+    columns=fullflexible,showstringspaces=false,tabsize=4,
+    keepspaces=true,showtabs=false,showspaces=false,
+    backgroundcolor=\color{white}, morekeywords={inline,public,
+    class,private,protected,struct},captionpos=t,lineskip=-0.4em,
+	aboveskip=10pt, extendedchars=true, breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941}
+}
+
+\thiswatermark{\centering \put(336.5,-38.0){\includegraphics[scale=0.8]{logo}} }
+\title{\mytitle}
+\author{\myauthor\hspace{1em}\\\contact\\Edinburgh Napier University\hspace{0.5em}-\hspace{0.5em}\mymodule}
+\date{}
+\hypersetup{pdfauthor=\myauthor,pdftitle=\mytitle,pdfkeywords=\mykeywords}
+\sloppy
+% #######################################
+% ########### START FROM HERE ###########
+% #######################################
+\begin{document}
+	\maketitle
+	\begin{abstract}
+	 This report covers the design of the web-app including URL hierarchy, enhancements, critical evaluation and personal evaluation. 
+	\end{abstract}
+    
+	\textbf{Keywords -- }{\mykeywords}
+
+	\section{Introduction}
+	This web-app which has been created for Westhill Bike Club using Python Flask runs in the browser. The web-app has information about the club, the annual Westhill bike ride and membership. Another feature that is available is the ability for people to sign up for an account and login where they will be taken to the dashboard. Once in the dashboard users will have the option to create rides and events which will be posted to the events page. There has also been a contact form implemented which people can fill out with any questions or queries they might have. 
+	
+	\section{Design}
+	\subsection{Languages}
+	This web-app has been built using Python Flask with the use of Jinga2 HTML templates, CSS and JavaScript. As well as all of these languages a database was also implemented using SQLite3 and SQLAlchemy. This database was used to store the data from the sign up and create an event features. The main running of the web-app can be done using Python Flask through Levinux, Terminal or similar command line software. It is displayed using local host 
+	
+	\subsubsection{Python Flask}
+	The structure and running of the web-app has been developed in Python Flask using Terminal on Mac, although it can also be run using Levinux and other command line software. Flask is the framework which allows websites to be built in python and run in any web browser. Using Python Flask lets developers create web-apps without the need to write lines and lines of code, features can normally be executed in just a few lines of code. During development a number of plugins were added to help with the functionality of the web-app. The plugins are imported into the web-app using the following code at the top of the index.py file: 
+	\begin{lstlisting}[Import Add-ons for flask_wtf Forms]
+    from flask_wtf import Form\end{lstlisting}
+	
+	To install the plugins into python flask pip install was used. Below is a list of the plugins imported into flask:\begin{itemize}
+        \item wtf\_forms
+ 	    \item flask\_sqlalchemy
+ 		\item flask\_login
+ 		\item flask\_mail
+ 		\end{itemize}
+ 		
+ 	This is an example of how pip install was used:
+ 	\begin{lstlisting}[language=Python]
+ 	$ pip install wtf_forms
+ 	\end{lstlisting}
+ 	
+    \subsubsection{Jinga2 HTML Templates}
+    The Layout and structure of the app has been created using a number of different jinga2 HTML templates which are rendered in the index.py file. A base template was created which stored the main features of the pages such as navigation, image banners and the footer. A dashboard base template was also created because the dashboard pages differ slightly in style from the rest of the web-app. The templates are rendered as below, for example the about page of this web-app is rendered as below using one simple line of code: 
+    \begin{lstlisting}[caption = Render Template Example]
+    @app.route('/about/')
+    def about():
+        return render_template('about.html')
+    \end{lstlisting}
+    
+    \subsubsection{SQLite3 Database and SQLAlchemy}
+    An SQLite3 database was implemented into the web-app to store user data from the sign-up page and the create an event page. This particular database was chosen because it was the language which was used in the workbook provided. Having also looked at examples and tutorials online SQLAlchemy was chosen to work alongside SQLite3. This decision was made because it meant that the developer wasn't required to write raw SQL because SQLAlchemy does most of it for you which helps to save time and effort. To import SQLAlchemy into the web-app the following code was placed at the top of the index.py file:
+    \begin{lstlisting}[caption = Import SQLAlchemy into web-app]
+    from flask_sqlalchemy import SQLAlchemy\end{lstlisting}
+    
+    Once SQLAlchemy has been added into the flask web-app the database location needs to be defined. The location will vary from user to user because it depends where they have the web-app located on their computer. 
+    
+    To define the database location the following code is placed in the index.py file:
+    \begin{lstlisting}[caption = Defining Database Location]
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/jomein/Desktop/coursework2/sourcecode/database.db'
+    db = SQLAlchemy(app)\end{lstlisting}
+    
+    Creating the database can be done two ways, either in the termial using sqlite3 and python or adding a single line of code to the bottom of the index.py file. Below is an example of the single line approach which was chosen to make it easier.
+    
+    \begin{lstlisting}[caption = db.Create\_all()]
+    if __name__ == '__main__':
+        db.create_all()
+        app.run(debug = True)\end{lstlisting}
+    
+    \subsubsection{Database Security}
+    Database security is extremely important especially when storing user data such as emails and passwords. Werkzeug.security has been used in the web-app to hash and salt the passwords so that if the someone retrieved the data from the database it would be extremely difficult to decrypt it. 
+
+	\subsection{URL Hierarchy}
+	The design of the URL hierarchy has been developed with the users in mind so that they can easily navigate their way around the web-app. Users can move around using the Navigation bar which is located at the top of the screen. The page the user is on is reflected in the URL. For example, if the user is on the membership page then the URL is ''http://localhost:5000/membership/''. This makes it clear that the user is on the membership page. Below is an example of how the URL is set in Python.
+	\begin{lstlisting}[caption = Recipes URL Hierarchy in Python Flask]
+    @app.route('/membership/')
+    def recipes():
+        return render_template('membership.html')
+    \end{lstlisting}
+	The hierarchy of the web-app is as below:  
+	\figuremacro{h}{URL_Hierarchy_CW2}{URL Hierarchy}{ - Westhill Bike Club Web-app }{1.0}
+	
+	\subsection{Styling}
+    \subsubsection{Bootstrap}
+    To style each page of the web-app Bootstrap has been used. Using this tool helps to makes the overall design consistent on every page. It also allows for easy design layouts using the style sheet provided by Bootstrap. However, custom styling has been implemented in this web-app to make it more appealing for the users. For example some of the custom styling which has been done is to the navigation, changing the colour to fit with the colour scheme of the bike club. Other custom styling which has been done is to the forms on the various pages such as the sign-up, log-in and create event forms. One of the other reasons Bootstrap has been used is because using the classes created it makes the pages responsive for all devices which is important to users when using a web-app or website. Having this functionality means less time is spent styling and making every aspect of the web-app responsive.
+
+    \subsubsection{Imagery}
+    Throughout the web-app there are banner images on pages. This helps to make it more interesting and eye catching for the user, making their experience more enjoyable. The images selected are all related to cycling. Images were taken from Unsplash\cite{Unsplash} and the westhill bike club Facebook page\cite{Facebook}.  
+ 
+	\subsubsection{Colour Scheme}
+    The colour scheme implemented was taken from the club colours which are already used. These colours are yellow and black. The online tool Coolor \cite{Color} was also used to find complementary colours. The full colour scheme used in this particular web-app is yellow, black, white. The specific colours which have been used are: \begin{itemize}
+        \item Yellow - \#EFA942
+        \item Black - \#000000
+        \item White - \#FFFFFF
+        \item Blue - \#3B73A1
+        \item Grey/Blue - \#565B6C
+        \end{itemize}
+
+    \newpage
+    \section{Enhancements}
+    \subsubsection{Forgotten Password}
+    One of the enhancements which could be added to the web-app is to have a forgotten password link for users. This feature would enable users to click the link forgotten password and be taken to a form where they enter the email that they signed up with. This would then send an email to the user with a link to create a new password. Having this feature would greatly improve the usability of the web-app because at the moment there is no way to change the password. This feature is important to users because many user sign up for a number of different sites and services and forget the password they created. 
+    
+    \subsubsection{Membership Form}
+    Another enhancement would be to have a membership form displaying on the membership page. This form would enable user to easily and quickly fill out the form which would then be sent straight to the club administrator. A benefit of having this feature would mean that users don't have to go to another site, download the form, fill it out and then email it to the club. This would cut out a few steps and making the users experience of the web-app more enjoyable.
+    
+    \subsubsection{Admin Users}
+    Having admin users would be an extremely beneficial feature of the web-app. the admin users would be able to see all the current signed up users. They would also have the permission to edit and delete the events created. Another permission they might have it to only allow certain users the ability to create an event. Having these permissions in place would give the web-app more security and stop unnecessary events from being posted by those who are not members of the club.
+     
+    \subsubsection{User Dashboard Features}
+    Enhancements could be made the the users dashboard. Features which could be added might be settings. This would let the user edit their personal details held by the club and the function to create a new password. The dashboard could also show all the events that, that particular user have created giving them the option to edit any of the events they have posted.
+    
+    \subsubsection{Share To Facebook}
+    Another enhancement which would prove to be extremely beneficial for users would be the ability to post a newly created event straight to Facebook. Having this feature would mean that duplicate events wouldn't need to be created on both the web-app and the Facebook group.  
+    
+    \subsubsection{Strava API}
+    Something else which would again be beneficial would be to have a Strava API so that when users are creating rides for the events page they can show the route which the training ride is going to be using. Having the API would mean that users wouldn't have to leave the web-app to see the route because they would be able to see it on the events page under the description of the ride.
+    
+    \section{Critical Evaluation}
+    One of the main features of the web-app is the ability for users to sign-up and create an account which will then allow them to log-in. The developer feels that this feature works well although there could be improvements made. Some improvements might be to add verifying the user so that a forgotten password can be implemented. 
+    
+    The other main feature is the create an event feature in the dashboard. The developer feels that also works well because of the simple and easy to use layout of the form. However when the event is created the date does not display the way the developer had hoped and could cause confusion for the users.
+    
+    The contact form works well although the developer feels that it might have been better to implement it a different way. This is because the contact takes a while to submit and send the email to the specified address. 
+    
+    The developer feels that the overall design of the web-app is suitable for the bike club. They kept it design simple and modern looking with the banner images of pages and the content displayed on all the different pages. Although the developer is happy withe the design and layout they would have liked to improve the dashboard if more features had been implemented into the web-app. 
+    
+    \section{Personal Evaluation}
+    When creating this web-app there were a few challenges to face. These included learning more advanced Python Flask and database integration to display on HTML pages.
+
+    \subsubsection{Python Flask}
+    To build on the knowledge I already had of Python Flask I worked my way through the Workbook provided\cite{Wells} which gave examples of the skills and knowledge required in order add more functionality to web-apps. To find out more information about the plugins available and how to use them I used documentation websites\cite{SQLAlchemy}\cite{mail}\cite{wtfform}\cite{login}. This gave me the necessary information about how each plugin works with flask. 
+
+    \subsubsection{SQLite3 and SQLAlchemy} 
+    SQLite3 and SQLAlchemy were both new to me, however I had some some basic MySQL in the past so their were similarities when looking into SQLite3.To help me understand SQLite3 it used the examples in the workbook provided as well as a number of different websites\cite{SQLAlchemy} and YouTube videos. This research gave me valuable examples of how to implement a database and the best ways to achieve what it was I wanted to do in my web-app, which was creating a log-in and event creator. Once I felt I had looked at enough examples and documentation I started to put into practice what I had read and seen using a mixture of what I found online to get my desired outcome. 
+
+    \newpage
+    \subsubsection{Overall Personal Reflection}
+    Overall I feel the developing of the web-app went well without too many challenges or problems. Although some challenges were faced I was able to overcome them easily with the help from articles and website online. I also feel the skills and knowledge I have gained through this development of the web-app will help me later on in university and my career after university.
+    
+    \bibliographystyle{ieeetr}
+    \bibliography{references}
+		
+\end{document}
