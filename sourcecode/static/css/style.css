@@ -77,6 +77,10 @@ body, html{
 	border-bottom: 0 !important;
 }
 
+.nav>li>a {
+    padding: 10px 9px !important;
+	}
+
 /* ----------- */
 
 /* Main content on pages */
@@ -110,7 +114,7 @@ body, html{
 	height: 400px;
 }
 
-.img_cont2{
+.cont2{
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -123,7 +127,7 @@ body, html{
 }
 
 .bg_img1{
-	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/cyclist_bw.png);
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/sunday.png);
 }
 
 .bg_img2{
@@ -140,6 +144,10 @@ body, html{
 
 .bg_img5{
 	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/bike-ride.png);
+}
+
+.bg_img6{
+	background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url(../imgs/blur.png);
 }
 
 h1.banner, h2.banner, p.lead{
@@ -196,7 +204,7 @@ p.lead{
 }
 
 .featurette-image.img-fluid.mx-auto{
-	width: 500px;
+	width: 100%;
 	height: auto;
 }
 
@@ -473,6 +481,7 @@ input{
 textarea{
   width: 100%;
 }
+
 
 /* ----------- */
 
