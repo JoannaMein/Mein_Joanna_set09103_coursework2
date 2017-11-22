@@ -22,7 +22,7 @@ app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = 'jo@mein.co.uk'
-app.config["MAIL_PASSWORD"] = ''
+app.config["MAIL_PASSWORD"] = '01Ruth12'
 
 mail.init_app(app)
 
@@ -34,7 +34,7 @@ class LoginForm(Form):
 class RegisterForm(Form):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(min=6, max=40)], render_kw={"placeholder": "Enter Email", "type":"email"})
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)], render_kw={"placeholder": "Enter Username", "type":"username"})
-    password = PasswordField('password', validators=[InputRequired(), Length(min=4, max=40)], render_kw={"placeholder": "Enter Password", "type":"password"})
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=40)], render_kw={"placeholder": "Enter Password (minimum of 8 characters)", "type":"password"})
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
