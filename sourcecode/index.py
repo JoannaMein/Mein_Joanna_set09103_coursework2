@@ -107,7 +107,7 @@ def contact():
     		return redirect('/contact/')
 
         elif request.method == 'GET':
-            return render_template('contact.html', form=form), 200
+            return render_template('contact.html', form=form)
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -120,7 +120,7 @@ def signup():
         db.session.commit()
         return redirect(url_for('dashboard'))
 
-    return render_template('signup.html', form=form, errors=form.errors.items()), 200
+    return render_template('signup.html', form=form, errors=form.errors.items())
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -135,7 +135,7 @@ def login():
             else:
             	flash("Invalid username or password")
 
-    return render_template('login.html', form=form, errors=form.errors.items()), 200
+    return render_template('login.html', form=form, errors=form.errors.items())
 
 @app.route('/dashboard/')
 @login_required
@@ -155,13 +155,13 @@ def create_ride():
          db.session.add(ride)
          db.session.commit()
          return redirect(url_for('events'))
-   return render_template('create_ride.html'), 200
+   return render_template('create_ride.html')
 
 @app.route('/logout/')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index')), 200
+    return redirect(url_for('index'))
 
 @app.errorhandler(404)
 def page_not_found(error):
