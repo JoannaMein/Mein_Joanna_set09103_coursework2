@@ -1,4 +1,6 @@
-# Mein_Joanna_set09103_coursework2
+# Bike Club Python Flask Web App
+
+Created as part of the Advanced Web Technologies Module
 
 To run the web-app the following plugins need to be installed using pip:
   * wtf_forms
